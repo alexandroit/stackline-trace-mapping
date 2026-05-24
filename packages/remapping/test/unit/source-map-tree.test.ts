@@ -14,13 +14,13 @@ import { assertMatchObject } from './util';
 describe('MapSource', () => {
   describe('traceMappings()', () => {
     const sourceRoot = 'foo';
-    const baseMap: DecodedSourceMap = {
+    const baseMap = {
       mappings: [],
       names: ['name'],
       sourceRoot,
       sources: ['child.js'],
       version: 3,
-    };
+    } satisfies DecodedSourceMap;
     const child = MapSource(
       new TraceMap({
         mappings: [
@@ -42,10 +42,10 @@ describe('MapSource', () => {
     );
 
     it('records segment if segment is 1-length', () => {
-      const map: DecodedSourceMap = {
+      const map = {
         ...baseMap,
         mappings: [[[0, 0, 0, 4], [5]]],
-      };
+      } satisfies DecodedSourceMap;
 
       const tree = MapSource(new TraceMap(map), [child]);
       const traced = toDecodedMap(traceMappings(tree));
@@ -53,7 +53,7 @@ describe('MapSource', () => {
     });
 
     it('records segment if trace hits 1-length segment', () => {
-      const map: DecodedSourceMap = {
+      const map = {
         ...baseMap,
         mappings: [
           [
@@ -61,7 +61,7 @@ describe('MapSource', () => {
             [5, 0, 1, 6],
           ],
         ],
-      };
+      } satisfies DecodedSourceMap;
 
       const tree = MapSource(new TraceMap(map), [child]);
       const traced = toDecodedMap(traceMappings(tree));
@@ -72,14 +72,30 @@ describe('MapSource', () => {
       const sourceIndex = 0;
       const line = 10; // There is no line 10 in child's mappings.
       const column = 0;
-      const map: DecodedSourceMap = {
+      const map = {
         ...baseMap,
         mappings: [[[0, sourceIndex, line, column]]],
-      };
+      } satisfies DecodedSourceMap;
 
       const tree = MapSource(new TraceMap(map), [child]);
       const traced = toDecodedMap(traceMappings(tree));
       assert.deepEqual(traced.mappings, []);
+    });
+
+    it('ends mapped position if trace returns null', () => {
+      const map = {
+        ...baseMap,
+        mappings: [
+          [
+            [0, 0, 1, 1],
+            [0, 0, 1, 0], // There is no column 0 in child map
+          ],
+        ],
+      } satisfies DecodedSourceMap;
+
+      const tree = MapSource(new TraceMap(map), [child]);
+      const traced = toDecodedMap(traceMappings(tree));
+      assert.deepEqual(traced.mappings, [[[0, 0, 0, 0, 0], [0]]]);
     });
 
     it('traces name if segment is 5-length', () => {
@@ -88,11 +104,11 @@ describe('MapSource', () => {
       const column = 0;
       const nameIndex = 0;
       const name = 'name';
-      const map: DecodedSourceMap = {
+      const map = {
         ...baseMap,
         mappings: [[[0, sourceIndex, line, column, nameIndex]]],
         names: [name],
-      };
+      } satisfies DecodedSourceMap;
 
       const tree = MapSource(new TraceMap(map), [child]);
       const traced = toDecodedMap(traceMappings(tree));
@@ -106,10 +122,10 @@ describe('MapSource', () => {
       const sourceIndex = 0;
       const line = 0;
       const column = 4;
-      const map: DecodedSourceMap = {
+      const map = {
         ...baseMap,
         mappings: [[[0, sourceIndex, line, column]]],
-      };
+      } satisfies DecodedSourceMap;
 
       const tree = MapSource(new TraceMap(map), [child]);
       const traced = toDecodedMap(traceMappings(tree));
@@ -120,10 +136,10 @@ describe('MapSource', () => {
       const sourceIndex = 0;
       const line = 1;
       const column = 1;
-      const map: DecodedSourceMap = {
+      const map = {
         ...baseMap,
         mappings: [[[0, sourceIndex, line, column]]],
-      };
+      } satisfies DecodedSourceMap;
 
       const tree = MapSource(new TraceMap(map), [child]);
       const traced = toDecodedMap(traceMappings(tree));
@@ -139,11 +155,11 @@ describe('MapSource', () => {
         // TODO: support sourceRoot
         // sourceRoot: 'https://foobar.com/',
       };
-      const map: DecodedSourceMap = {
+      const map = {
         ...baseMap,
         mappings: [],
         ...extras,
-      };
+      } satisfies DecodedSourceMap;
 
       const tree = MapSource(new TraceMap(map), [child]);
       const traced = toDecodedMap(traceMappings(tree));
@@ -151,10 +167,10 @@ describe('MapSource', () => {
     });
 
     it('resolves source files realtive to sourceRoot', () => {
-      const map: DecodedSourceMap = {
+      const map = {
         ...baseMap,
         mappings: [[[0, 0, 0, 0]]],
-      };
+      } satisfies DecodedSourceMap;
 
       const tree = MapSource(new TraceMap(map), [child]);
       const traced = toDecodedMap(traceMappings(tree));
@@ -166,11 +182,11 @@ describe('MapSource', () => {
     });
 
     it('truncates mappings to the last line with segment', () => {
-      const map: DecodedSourceMap = {
+      const map = {
         ...baseMap,
         mappings: [[[0, 0, 0, 0]], [], []],
         sourceRoot,
-      };
+      } satisfies DecodedSourceMap;
 
       const tree = MapSource(new TraceMap(map), [child]);
       const traced = toDecodedMap(traceMappings(tree));
@@ -178,11 +194,11 @@ describe('MapSource', () => {
     });
 
     it('truncates empty mappings', () => {
-      const map: DecodedSourceMap = {
+      const map = {
         ...baseMap,
         mappings: [[], [], []],
         sourceRoot,
-      };
+      } satisfies DecodedSourceMap;
 
       const tree = MapSource(new TraceMap(map), [child]);
       const traced = toDecodedMap(traceMappings(tree));
@@ -191,7 +207,7 @@ describe('MapSource', () => {
 
     describe('redundant segments', () => {
       it('skips redundant segments on the same line', () => {
-        const map: DecodedSourceMap = {
+        const map = {
           ...baseMap,
           mappings: [
             [
@@ -199,7 +215,7 @@ describe('MapSource', () => {
               [1, 0, 0, 0],
             ],
           ],
-        };
+        } satisfies DecodedSourceMap;
 
         const tree = MapSource(new TraceMap(map), [child]);
         const traced = toDecodedMap(traceMappings(tree));
@@ -207,10 +223,10 @@ describe('MapSource', () => {
       });
 
       it('keeps redundant segments on another line', () => {
-        const map: DecodedSourceMap = {
+        const map = {
           ...baseMap,
           mappings: [[[0, 0, 0, 0]], [[0, 0, 0, 0]]],
-        };
+        } satisfies DecodedSourceMap;
 
         const tree = MapSource(new TraceMap(map), [child]);
         const traced = toDecodedMap(traceMappings(tree));
@@ -220,7 +236,7 @@ describe('MapSource', () => {
   });
 
   describe('originalPositionFor()', () => {
-    const map: DecodedSourceMap = {
+    const map = {
       mappings: [
         [
           [0, 0, 0, 0],
@@ -240,7 +256,7 @@ describe('MapSource', () => {
       names: ['name'],
       sources: ['child.js'],
       version: 3,
-    };
+    } satisfies DecodedSourceMap;
     const tree = MapSource(new TraceMap(map), [OriginalSource('child.js', '', false)]);
 
     function tracePosition(source: any, line: number, col: number, name: string) {

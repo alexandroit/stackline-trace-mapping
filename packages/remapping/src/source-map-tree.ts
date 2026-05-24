@@ -104,10 +104,9 @@ function originalPositionForSegment(
   parentName: string,
   segment: Readonly<SourceMapSegment> | null,
 ): void {
-  if (segment == null) return;
   // 1-length segments only move the current generated column, there's no source information
   // to gather from it.
-  if (segment.length === 1) {
+  if (segment == null || segment.length === 1) {
     maybeAddSegment(gen, genLine, genCol);
     return;
   }
