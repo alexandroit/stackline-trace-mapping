@@ -1,7 +1,7 @@
 import { GenMapping, maybeAddSegment, setIgnore, setSourceContent } from '@jridgewell/gen-mapping';
 import { traceSegment, decodedMappings } from '@jridgewell/trace-mapping';
 
-import type { TraceMap } from '@jridgewell/trace-mapping';
+import type { TraceMap, SourceMapSegment } from '@jridgewell/trace-mapping';
 
 export type OriginalSource = {
   map: null;
@@ -78,11 +78,10 @@ export function OriginalSource(
  * resolving each mapping in terms of the original source files.
  */
 export function traceMappings(tree: MapSource): GenMapping {
+  const { map } = tree;
   // TODO: Eventually support sourceRoot, which has to be removed because the sources are already
   // fully resolved. We'll need to make sources relative to the sourceRoot before adding them.
-  const gen = new GenMapping({ file: tree.map.file });
-  const { sources: rootSources, map } = tree;
-  const rootNames = map.names;
+  const gen = new GenMapping({ file: map.file });
   const rootMappings = decodedMappings(map);
 
   for (let i = 0; i < rootMappings.length; i++) {
@@ -90,35 +89,40 @@ export function traceMappings(tree: MapSource): GenMapping {
 
     for (let j = 0; j < segments.length; j++) {
       const segment = segments[j];
-      const genCol = segment[0];
-
-      // 1-length segments only move the current generated column, there's no source information
-      // to gather from it.
-      if (segment.length === 1) {
-        maybeAddSegment(gen, i, genCol);
-        continue;
-      }
-
-      const source = rootSources[segment[1]];
-      originalPositionFor(
-        gen,
-        i,
-        genCol,
-        source,
-        segment[2],
-        segment[3],
-        segment.length === 5 ? rootNames[segment[4]] : '',
-      );
+      originalPositionForSegment(gen, i, segment[0], tree, '', segment);
     }
   }
 
   return gen;
 }
 
-/**
- * originalPositionFor is only called on children SourceMapTrees. It recurses down into its own
- * child SourceMapTrees, until we find the original source map.
- */
+function originalPositionForSegment(
+  gen: GenMapping,
+  genLine: number,
+  genCol: number,
+  source: MapSource,
+  parentName: string,
+  segment: Readonly<SourceMapSegment> | null,
+): void {
+  if (segment == null) return;
+  // 1-length segments only move the current generated column, there's no source information
+  // to gather from it.
+  if (segment.length === 1) {
+    maybeAddSegment(gen, genLine, genCol);
+    return;
+  }
+
+  return originalPositionFor(
+    gen,
+    genLine,
+    genCol,
+    source.sources[segment[1]],
+    segment[2],
+    segment[3],
+    segment.length === 5 ? source.map.names[segment[4]] : parentName,
+  );
+}
+
 export function originalPositionFor(
   gen: GenMapping,
   genLine: number,
@@ -136,23 +140,5 @@ export function originalPositionFor(
   }
 
   const segment = traceSegment(source.map, line, column);
-
-  // If we couldn't find a segment, then this doesn't exist in the sourcemap.
-  if (segment == null) return;
-  // 1-length segments only move the current generated column, there's no source information
-  // to gather from it.
-  if (segment.length === 1) {
-    maybeAddSegment(gen, genLine, genCol);
-    return;
-  }
-
-  originalPositionFor(
-    gen,
-    genLine,
-    genCol,
-    source.sources[segment[1]],
-    segment[2],
-    segment[3],
-    segment.length === 5 ? source.map.names[segment[4]] : name,
-  );
+  return originalPositionForSegment(gen, genLine, genCol, source, name, segment);
 }
