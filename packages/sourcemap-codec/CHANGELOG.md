@@ -1,7 +1,9 @@
-# UNRELEASED
+# [1.6.0] - 2026-08-27
 
 - Add Range Mapping support: #45
   - includes new `decodeRangeMappings` and `encodeRangeMappings` APIs
+
+**Full Changelog**: https://github.com/jridgewell/sourcemaps/compare/sourcemap-codec/1.5.5...sourcemap-codec/1.6.0
 
 # [1.5.5] - 2025-08-12
 
