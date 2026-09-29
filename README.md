@@ -4,13 +4,13 @@
 
 [![npm version](https://img.shields.io/npm/v/@stackline/trace-mapping.svg?style=flat-square)](https://www.npmjs.com/package/@stackline/trace-mapping)
 [![license](https://img.shields.io/npm/l/@stackline/trace-mapping.svg?style=flat-square)](https://github.com/alexandroit/stackline-trace-mapping)
-[![GitHub repository](https://img.shields.io/badge/GitHub-alexandroit%2Fstackline-trace-mapping-181717?style=flat-square&logo=github)](https://github.com/alexandroit/stackline-trace-mapping)
+[![GitHub repository](https://img.shields.io/badge/GitHub-repository-181717?style=flat-square&logo=github)](https://github.com/alexandroit/stackline-trace-mapping)
 [![Docs](https://img.shields.io/badge/docs-alexandro.net-0f766e?style=flat-square)](https://alexandro.net/docs/vanilla/trace-mapping/)
 [![Reddit community](https://img.shields.io/badge/community-r%2FStackline-ff4500?style=flat-square&logo=reddit&logoColor=white)](https://www.reddit.com/r/Stackline/)
 
 **[Documentation](https://alexandro.net/docs/vanilla/trace-mapping/)** | **[npm](https://www.npmjs.com/package/@stackline/trace-mapping)** | **[Issues](https://github.com/alexandroit/stackline-trace-mapping/issues)** | **[Repository](https://github.com/alexandroit/stackline-trace-mapping)**
 
-**Current package version:** `1.0.1`
+**Current package version:** `1.0.2`
 
 ---
 
@@ -22,7 +22,7 @@
 
 | Item | Value |
 | :--- | :--- |
-| Package | `@stackline/trace-mapping@1.0.1` |
+| Package | `@stackline/trace-mapping@1.0.2` |
 | API target | `@jridgewell/trace-mapping@0.3.31` |
 | Supported Node.js | `See supported framework requirements` |
 | License | `MIT` |
