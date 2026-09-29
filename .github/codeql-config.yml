@@ -2,3 +2,5 @@ name: Package source and release tooling
 paths:
   - packages/trace-mapping
   - scripts
+paths-ignore:
+  - packages/trace-mapping/benchmark/chrome.mjs
