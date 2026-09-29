@@ -1,0 +1,25 @@
+{
+  "repository": "alexandroit/stackline-trace-mapping",
+  "packages": [
+    {
+      "name": "@stackline/trace-mapping",
+      "path": "README.md",
+      "version": "1.0.1",
+      "baselineVersion": "1.0.0",
+      "keywords": [
+        "stackline",
+        "npm-package",
+        "trace-mapping",
+        "source-map",
+        "typescript",
+        "source",
+        "map"
+      ],
+      "homepage": "https://alexandro.net/docs/vanilla/trace-mapping/",
+      "baselineTarball": "https://registry.npmjs.org/@stackline/trace-mapping/-/trace-mapping-1.0.0.tgz",
+      "baselineIntegrity": "sha512-to55jps5wfMx4vRpJL+Ri+yXa1B3H2V0C2LaXRegTIEivB/krQN3Njv9PT06Zxufek0mj4MmPIXN+gn5OCY6IA==",
+      "expectedSha512": "039268a01711f5df850a9ef6456e9109bf16b57ce0fad7ef9498b33bd30048cec7332254dfea5b92237ee7268b2bd63022b3cf23e9caa30e5d03efee36dece56",
+      "tag": "docs-stackline-trace-mapping-v1.0.1"
+    }
+  ]
+}
