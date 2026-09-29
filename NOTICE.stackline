@@ -1,0 +1,5 @@
+Independent maintenance fork of @jridgewell/trace-mapping 0.3.31.
+Original copyright, author attribution, and license files are retained unchanged.
+Upstream: https://github.com/jridgewell/sourcemaps
+Base commit: 74fc8e11d30641b82e3ca3532cd89477671afeab
+Stackline is not affiliated with or endorsed by upstream maintainers.

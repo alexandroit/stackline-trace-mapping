@@ -1,0 +1,121 @@
+{
+  "checkedAt": "2026-09-29T00:21:55.798319+00:00",
+  "upstreamRepository": "jridgewell/sourcemaps",
+  "coverage": "Most recently updated 100 open and 30 closed issue/PR entries; PRs removed. This is triage evidence, not a claim of exhaustive review.",
+  "openIssues": [
+    {
+      "number": 39,
+      "title": "Type error in `remapping.d.cts`",
+      "url": "https://github.com/jridgewell/sourcemaps/issues/39"
+    },
+    {
+      "number": 55,
+      "title": "discussion: esm-only",
+      "url": "https://github.com/jridgewell/sourcemaps/issues/55"
+    },
+    {
+      "number": 54,
+      "title": "traceSegment() in trace-mapping doesn't guard against negative line, crashing remapping() when a source map segment has sourceLine: -1",
+      "url": "https://github.com/jridgewell/sourcemaps/issues/54"
+    },
+    {
+      "number": 53,
+      "title": "Stop using `append()` in FlattenMap",
+      "url": "https://github.com/jridgewell/sourcemaps/issues/53"
+    },
+    {
+      "number": 38,
+      "title": "Deprecate `@ampproject/remapping`",
+      "url": "https://github.com/jridgewell/sourcemaps/issues/38"
+    }
+  ],
+  "recentClosedIssues": [
+    {
+      "number": 52,
+      "title": "Please enable Private Vulnerability Reporting",
+      "url": "https://github.com/jridgewell/sourcemaps/issues/52"
+    },
+    {
+      "number": 49,
+      "title": "Prototype Pollution vulnerability in @jridgewell/sourcemap-codec",
+      "url": "https://github.com/jridgewell/sourcemaps/issues/49"
+    },
+    {
+      "number": 44,
+      "title": "`sources` should be optional in type definitions",
+      "url": "https://github.com/jridgewell/sourcemaps/issues/44"
+    },
+    {
+      "number": 41,
+      "title": "trace-mapping is slow for maps from minified sources",
+      "url": "https://github.com/jridgewell/sourcemaps/issues/41"
+    },
+    {
+      "number": 37,
+      "title": "README links still point to old repos",
+      "url": "https://github.com/jridgewell/sourcemaps/issues/37"
+    },
+    {
+      "number": 31,
+      "title": "Using the latest version still results in errors",
+      "url": "https://github.com/jridgewell/sourcemaps/issues/31"
+    },
+    {
+      "number": 30,
+      "title": "ERROR  Cannot require() ES Module /app/node_modules/@jridgewell/sourcemap-codec/dist/sourcemap-codec.mjs in a cycle.",
+      "url": "https://github.com/jridgewell/sourcemaps/issues/30"
+    },
+    {
+      "number": 32,
+      "title": "Restore Node.js 6 compatibility",
+      "url": "https://github.com/jridgewell/sourcemaps/issues/32"
+    },
+    {
+      "number": 28,
+      "title": "trace-mapping: Published version 0.3.25 not aligned with local changes",
+      "url": "https://github.com/jridgewell/sourcemaps/issues/28"
+    },
+    {
+      "number": 27,
+      "title": "Adopt `module-sync`?",
+      "url": "https://github.com/jridgewell/sourcemaps/issues/27"
+    },
+    {
+      "number": 29,
+      "title": "`exports` incompatible with TypeScript `\"moduleResolution\": \"node16\"`",
+      "url": "https://github.com/jridgewell/sourcemaps/issues/29"
+    },
+    {
+      "number": 22,
+      "title": "still facing solved issue",
+      "url": "https://github.com/jridgewell/sourcemaps/issues/22"
+    },
+    {
+      "number": 23,
+      "title": "After upgrading to version 0.3.7, an error occurs.",
+      "url": "https://github.com/jridgewell/sourcemaps/issues/23"
+    },
+    {
+      "number": 6,
+      "title": "Temporary solution to version 0.3.6 issue",
+      "url": "https://github.com/jridgewell/sourcemaps/issues/6"
+    },
+    {
+      "number": 9,
+      "title": "Getting build error After latest 0.3.6 release. Cant find module Cannot find module gen-mapping.umd.js",
+      "url": "https://github.com/jridgewell/sourcemaps/issues/9"
+    },
+    {
+      "number": 21,
+      "title": "New v0.3.7 is published now.",
+      "url": "https://github.com/jridgewell/sourcemaps/issues/21"
+    },
+    {
+      "number": 14,
+      "title": "Node 14: Getting error:  SyntaxError: Unexpected token '||=' On latest release. ",
+      "url": "https://github.com/jridgewell/sourcemaps/issues/14"
+    }
+  ],
+  "decision": "Return null for a negative traceSegment line, matching the existing out-of-range behavior (upstream issue 54).",
+  "limits": "Issue titles and bodies were reviewed from the bounded primary-source snapshot; this does not claim exhaustive issue closure or vulnerability absence."
+}

@@ -175,7 +175,7 @@ export function traceSegment(
 
   // It's common for parent source maps to have pointers to lines that have no
   // mapping (like a "//# sourceMappingURL=") at the end of the child file.
-  if (line >= decoded.length) return null;
+  if (line < 0 || line >= decoded.length) return null;
 
   const segments = decoded[line];
   const index = traceSegmentInternal(

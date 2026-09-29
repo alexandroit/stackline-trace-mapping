@@ -1,0 +1,21 @@
+{
+  "slug": "trace-mapping",
+  "upstream": "@jridgewell/trace-mapping",
+  "upstreamVersion": "0.3.31",
+  "upstreamIntegrity": "sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==",
+  "upstreamCommit": "74fc8e11d30641b82e3ca3532cd89477671afeab",
+  "sourcePackageDirectory": "packages/trace-mapping",
+  "overlays": {
+    "src/trace-mapping.ts": "packages/trace-mapping/src/trace-mapping.ts",
+    "dist/trace-mapping.mjs": "packages/trace-mapping/dist/trace-mapping.mjs",
+    "dist/trace-mapping.mjs.map": "packages/trace-mapping/dist/trace-mapping.mjs.map",
+    "dist/trace-mapping.umd.js": "packages/trace-mapping/dist/trace-mapping.umd.js",
+    "dist/trace-mapping.umd.js.map": "packages/trace-mapping/dist/trace-mapping.umd.js.map"
+  },
+  "tests": [
+    "npm ci --ignore-scripts",
+    "npm run build --workspace=@jridgewell/sourcemap-codec",
+    "npm run build --workspace=@jridgewell/trace-mapping",
+    "npm run test --workspace=@jridgewell/trace-mapping"
+  ]
+}
