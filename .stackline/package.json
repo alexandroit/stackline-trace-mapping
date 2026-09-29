@@ -1,8 +1,13 @@
 {
   "name": "@stackline/trace-mapping",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Trace the original position through a source map",
   "keywords": [
+    "stackline",
+    "npm-package",
+    "trace-mapping",
+    "source-map",
+    "typescript",
     "source",
     "map"
   ],
@@ -52,7 +57,7 @@
     "lint:types": "npm run test:types -- --fix",
     "prepublishOnly": "npm run-s -n build test"
   },
-  "homepage": "https://github.com/alexandroit/stackline-trace-mapping#readme",
+  "homepage": "https://alexandro.net/docs/vanilla/trace-mapping/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alexandroit/stackline-trace-mapping.git"
