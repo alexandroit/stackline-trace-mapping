@@ -10,7 +10,8 @@
     "dist/trace-mapping.mjs": "packages/trace-mapping/dist/trace-mapping.mjs",
     "dist/trace-mapping.mjs.map": "packages/trace-mapping/dist/trace-mapping.mjs.map",
     "dist/trace-mapping.umd.js": "packages/trace-mapping/dist/trace-mapping.umd.js",
-    "dist/trace-mapping.umd.js.map": "packages/trace-mapping/dist/trace-mapping.umd.js.map"
+    "dist/trace-mapping.umd.js.map": "packages/trace-mapping/dist/trace-mapping.umd.js.map",
+    "README.md": "README.md"
   },
   "tests": [
     "npm ci --ignore-scripts",
